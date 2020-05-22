@@ -26,6 +26,10 @@ resource "aws_instance" "this" {
 
   ebs_optimized = var.ebs_optimized
 
+  lifecycle {
+    ignore_changes = ["ami"]
+  }
+
   dynamic "root_block_device" {
     for_each = var.root_block_device
     content {
